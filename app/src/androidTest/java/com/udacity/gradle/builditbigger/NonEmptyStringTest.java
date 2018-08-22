@@ -14,6 +14,7 @@ public class NonEmptyStringTest {
     private static final String LOG_TAG = "NonEmptyStringTest";
 
     @SuppressWarnings("unchecked")
+    @Test
     public void test() {
 
         // Testing that Async task successfully retrieves a non-empty string
