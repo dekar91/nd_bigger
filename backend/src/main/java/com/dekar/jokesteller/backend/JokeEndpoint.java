@@ -6,6 +6,7 @@
 
 package com.dekar.jokesteller.backend;
 
+import com.dekar.JokeTelling;
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
@@ -25,14 +26,28 @@ import javax.inject.Named;
 
 public class JokeEndpoint {
 
-    /**
-     * A simple endpoint method that takes a name and says Hi back
-     */
-    @ApiMethod(name = "putJoke")
-    public JokeBean putJoke(JokeBean joke) {
-//        JokeBean response = new JokeBean();
-//        response.setJoke("Hi, " + name);
-        return joke;
+    /** A simple endpoint method that takes a name and says Hi back */
+    @ApiMethod(name = "sayHi")
+    public JokeBean sayHi(@Named("name") String name) {
+        JokeBean response = new JokeBean();
+        response.setData("Hi, " + name);
+
+        return response;
+    }
+
+    @ApiMethod(name = "getJoke")
+    public JokeBean getJoke() {
+
+        try {
+            Thread.sleep(5 * 1000);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        JokeBean response = new JokeBean();
+        response.setData(new JokeTelling().getRandomJoke());
+
+        return response;
     }
 
 }
