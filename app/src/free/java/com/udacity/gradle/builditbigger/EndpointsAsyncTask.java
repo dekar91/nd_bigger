@@ -9,7 +9,6 @@ import android.widget.ProgressBar;
 
 import com.dekar.myandroidlibrary.JokeDisplayActivity;
 import com.dekar.myapplication.backend.jokeApi.JokeApi;
-import com.dekar.myapplication.backend.jokeApi.model.JokeBean;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
@@ -43,11 +42,18 @@ class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, String> 
         if (mJokeApi == null) {
             JokeApi.Builder builder = new JokeApi.Builder(AndroidHttp.newCompatibleTransport(),
                     new AndroidJsonFactory(), null)
-                    .setRootUrl(mContext.getString(R.string.root_url_api));
+                    .setRootUrl("http://10.0.2.2:8080/");
+//                    .setGoogleClientRequestInitializer(new CommonGoogleClientRequestInitializer() {
+//                        @Override
+//                        public void initialize(AbstractGoogleClientRequest<?> abstractGoogleClientRequest) throws IOException {
+//                            abstractGoogleClientRequest.setDisableGZipContent(true);
+//                        }
+//                    });
+
             mJokeApi = builder.build();
         }
         try {
-            return mJokeApi.putJoke(new JokeBean()).execute().getJoke();
+            return mJokeApi.getJoke().execute().getData();
         } catch (IOException e) {
             return e.getMessage();
         }

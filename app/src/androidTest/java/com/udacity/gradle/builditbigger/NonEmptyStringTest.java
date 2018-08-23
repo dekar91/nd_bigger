@@ -33,7 +33,7 @@ public class NonEmptyStringTest {
             result = endpointsAsyncTask.get();
             Log.d(LOG_TAG, "Retrieved a non-empty string successfully: " + result);
         } catch (Exception e) {
-            e.printStackTrace();
+            fail(e.getMessage());
         }
         assertNotNull(result);
     }
