@@ -45,6 +45,7 @@ class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, String> 
         if (mJokeApi == null) {
             JokeApi.Builder builder = new JokeApi.Builder(AndroidHttp.newCompatibleTransport(),
                     new AndroidJsonFactory(), null)
+                    .setRootUrl("http://10.0.2.2:8080/_ah/api/")
                     .setApplicationName("backend")
                     .setGoogleClientRequestInitializer(new CommonGoogleClientRequestInitializer() {
                         public void initialize(AbstractGoogleJsonClientRequest<?> abstractGoogleClientRequest) throws IOException {
