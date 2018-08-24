@@ -35,6 +35,7 @@ public class NonEmptyStringTest {
         } catch (Exception e) {
             fail(e.getMessage());
         }
+
         assertNotNull(result);
     }
 
